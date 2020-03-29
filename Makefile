@@ -20,10 +20,6 @@ options:
 
 ${OBJ}: config.h config.mk
 
-config.h:
-	@echo creating $@ from config.def.h
-	@cp config.def.h $@
-
 tabbed: tabbed.o
 	@echo CC -o $@
 	@${CC} -o $@ tabbed.o ${LDFLAGS}
@@ -35,7 +31,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p tabbed-${VERSION}
-	@cp -R LICENSE Makefile README config.def.h config.mk \
+	@cp -R LICENSE Makefile README config.mk \
 		tabbed.1 arg.h ${SRC} tabbed-${VERSION}
 	@tar -cf tabbed-${VERSION}.tar tabbed-${VERSION}
 	@gzip tabbed-${VERSION}.tar
